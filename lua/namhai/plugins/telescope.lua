@@ -73,6 +73,8 @@ return {
     end)
 
     local keymap = vim.keymap -- for conciseness
+    -- do we really need this ? 
+    -- maybe, with all the .gitignore
     vim.keymap.set('n', '<C-p>', builtin.git_files, {})
     keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
