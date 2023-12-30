@@ -1,10 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
   dependencies = {
-    "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "nvim-tree/nvim-web-devicons",
     "nvim-telescope/telescope-file-browser.nvim"
   },
   config = function()
@@ -29,35 +26,38 @@ return {
         },
       },
       extensions = {
-        file_browser = {
-          -- theme = "dropdown",
-          -- disables netrw and use telescope-file-browser in its place
-          -- hijack_netrw = true,
-          mappings = {
-            -- your custom insert mode mappings
-            ["i"] = {
-              ["<C-c>"] = function() vim.cmd(':stopinsert') end
-            },
-            ["n"] = {
-
-              -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-              -- ["o"] = actions.select_default,
-              -- your custom normal mode mappings
-
-              ["N"] = fb_actions.create,
-              ["h"] = fb_actions.goto_parent_dir,
-              ["-"] = fb_actions.goto_parent_dir,
-              ["/"] = function()
-                vim.cmd('startinsert')
-              end
+          file_browser = {
+            -- theme = "dropdown",
+            -- disables netrw and use telescope-file-browser in its place
+            mappings = {
+              -- your custom insert mode mappings
+              ["n"] = {
+                -- your custom normal mode mappings
+                ["N"] = fb_actions.create,
+                ["-"] = fb_actions.goto_parent_dir,
+                ["/"] = function()
+                  vim.cmd("startinsert")
+                end,
+                ["<C-u>"] = function(prompt_bufnr)
+                  for i = 1, 10 do
+                    actions.move_selection_previous(prompt_bufnr)
+                  end
+                end,
+                ["<C-d>"] = function(prompt_bufnr)
+                  for i = 1, 10 do
+                    actions.move_selection_next(prompt_bufnr)
+                  end
+                end,
+              },
             },
           },
-        },
-      },
-    })
+        }
+      })
 
+    local telescope = require("telescope")
     telescope.load_extension("fzf")
+    telescope.load_extension("file_browser")
+
     -- set keymaps
     vim.keymap.set("n", "<leader>pe", function()
       telescope.extensions.file_browser.file_browser({
@@ -74,12 +74,18 @@ return {
 
     local keymap = vim.keymap -- for conciseness
     -- do we really need this ? 
-    -- maybe, with all the .gitignore
+    -- maybe, with all the .gitignore/@node-modules
     vim.keymap.set('n', '<C-p>', builtin.git_files, {})
     keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+
+    -- go next / previous item in qflist
+    vim.keymap.set("n", "<F35>", "<C-w>jj<CR>", { silent = true })
+    vim.keymap.set("n", "<F34>", "<C-w>jk<CR>", { silent = true })
+    -- exit
+    vim.keymap.set("n", "<F36>", "<C-w>j<C-w>q", {noremap = true, silent = true })
+
+    
   end,
 }
-
-
