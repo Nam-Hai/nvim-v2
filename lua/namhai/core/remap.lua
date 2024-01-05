@@ -63,3 +63,6 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- vim.keymap.set("n", "<leader>zm", ":ZenMode<CR>", { noremap = true })
 
+vim.keymap.set("n", "<F8>", ":TSHighlightCapturesUnderCursor<CR>")
+
+vim.keymap.set("n", "<C-->", ":bw<CR>", { noremap = true })

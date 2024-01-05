@@ -35,6 +35,8 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 500
 
+vim.opt.clipboard= "unnamed"
+
 -- vim.highlight.on_yank = true
 vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank()")
 
@@ -42,5 +44,3 @@ vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank({higroup='Search', 
 
 
 vim.cmd(":set ignorecase")
-
-

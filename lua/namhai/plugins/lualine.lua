@@ -12,7 +12,8 @@ return {
       yellow = "#FFDA7B",
       red = "#FF4A4A",
       fg = "#c3ccdc",
-      bg = "#112638",
+      -- bg = "#112638",
+      bg = "#012b36",
       inactive_bg = "#2c3043",
     }
 
@@ -48,7 +49,6 @@ return {
         c = { bg = colors.inactive_bg, fg = colors.semilightgray },
       },
     }
-
     -- configure lualine with modified theme
     lualine.setup({
       options = {
