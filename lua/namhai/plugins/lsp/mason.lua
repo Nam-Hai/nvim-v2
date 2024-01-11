@@ -35,7 +35,6 @@ return {
 				"emmet_ls",
 				"volar",
 				"eslint",
-				"biome",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -45,7 +44,6 @@ return {
 			ensure_installed = {
 				-- "prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"biome", -- formater, linter
 				-- "eslint_d", -- js linter
 			},
 		})

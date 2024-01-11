@@ -138,19 +138,19 @@ return {
 			filetypes = { "vue" },
 		})
 
-		lspconfig["biome"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"json",
-				"jsonc",
-				"typescript",
-				"typescript.tsx",
-				"typescriptreact",
-			},
-		})
+		-- lspconfig["biome"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	filetypes = {
+		-- 		"javascript",
+		-- 		"javascriptreact",
+		-- 		"json",
+		-- 		"jsonc",
+		-- 		"typescript",
+		-- 		"typescript.tsx",
+		-- 		"typescriptreact",
+		-- 	},
+		-- })
 
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
