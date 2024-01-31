@@ -31,6 +31,14 @@ return {
 					-- disables netrw and use telescope-file-browser in its place
 					mappings = {
 						-- your custom insert mode mappings
+            ["i"] = {
+							["<C-p>"] = function(prompt_bufnr)
+									actions.move_selection_previous(prompt_bufnr)
+              end,
+							["<C-n>"] = function(prompt_bufnr)
+									actions.move_selection_next(prompt_bufnr)
+              end,
+            },
 						["n"] = {
 							-- your custom normal mode mappings
 							["N"] = fb_actions.create,
@@ -39,6 +47,13 @@ return {
 							["/"] = function()
 								vim.cmd("startinsert")
 							end,
+
+							["<C-p>"] = function(prompt_bufnr)
+									actions.move_selection_previous(prompt_bufnr)
+              end,
+							["<C-n>"] = function(prompt_bufnr)
+									actions.move_selection_next(prompt_bufnr)
+              end,
 							["<C-u>"] = function(prompt_bufnr)
 								for i = 1, 10 do
 									actions.move_selection_previous(prompt_bufnr)

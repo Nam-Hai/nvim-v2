@@ -70,6 +70,11 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true
+    }
+
 		-- configure html server
 		lspconfig["html"].setup({
 			capabilities = capabilities,
@@ -82,6 +87,20 @@ return {
 
 		-- configure typescript server with plugin
 		lspconfig["tsserver"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			init_options = {
+				preferences = {
+					disableSuggestions = true,
+				},
+			},
+			filetypes = {
+				"vue",
+				"javascript",
+				"typescript",
+			},
+		})
+		lspconfig["eslint-lsp"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			init_options = {

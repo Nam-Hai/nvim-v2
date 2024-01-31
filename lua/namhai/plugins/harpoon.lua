@@ -58,5 +58,3 @@ return {
     vim.cmd('highlight! TabLineFill guibg=NONE guifg=white')
   end,
 }
-
-
